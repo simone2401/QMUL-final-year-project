@@ -86,4 +86,5 @@ The file `run.txt` provides reference steps for starting the experiment after `b
 ## Notes
 
 - Some environment configurations may vary depending on your system  
-- This repository is intended for research and reproducibility purposes  
+- This repository is intended for research and reproducibility purposes
+- A whole formal experiment(200 step) may takes about 48 hours and a storage of 200G 
