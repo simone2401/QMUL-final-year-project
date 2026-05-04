@@ -65,7 +65,7 @@ def _collect_scalar_candidates(exp_dir: Path) -> list[Path]:
                 candidates.append(Path(root) / name)
     return sorted(candidates)
 
-#KL is close in formal experiment
+
 def try_read_latest_kl(exp_dir: Path) -> float | None:
     try:
         from tensorboard.backend.event_processing.event_accumulator import EventAccumulator
