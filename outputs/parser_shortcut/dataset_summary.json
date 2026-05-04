@@ -1,0 +1,6 @@
+{
+  "train_examples": 98829,
+  "valid_examples": 10981,
+  "train_path": "/home/jovyan/project/outputs/train_for_verl.parquet",
+  "valid_path": "/home/jovyan/project/outputs/valid_for_verl.parquet"
+}

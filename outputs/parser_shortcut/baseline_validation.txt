@@ -1,0 +1,98 @@
+same validation as GRPO(same subset:1000):
+
+python eval_baseline.py \
+  --input-path /home/jovyan/project/outputs/valid_formal_subset.parquet \
+  --strategy all \
+  --save-details \
+  --details-path /home/jovyan/project/outputs/grpo_runs/tables/bm25_query_grpo_formal/baseline_subset_details_test.jsonl \
+  --max-examples 1200
+
+Evaluating BM25 + Claim: 100%|███████████████████████████████████████████████████████████████| 1000/1000 [1:24:51<00:00,  5.09s/example]
+Evaluating BM25 + Entity: 100%|██████████████████████████████████████████████████████████████| 1000/1000 [2:01:55<00:00,  7.32s/example]
+{
+  "reward_formula": "R = 0.5 * doc_hit@5 + 1.0 * sent_hit@5 + 1.0 * full_evidence@10 + 0.2 * mrr",
+  "num_shards": 26,
+  "input_path": "/home/jovyan/project/outputs/valid_formal_subset.parquet",
+  "BM25 + Claim": {
+    "Sentence Recall@5": [0.611,0.0],
+    "Sentence Recall@10": [0.694,0.0],
+    "Page Recall@5": [0.697,0.0],
+    "Page Recall@10": [0.768,0.0],
+    "Full Evidence@10": [0.633,0.0],
+    "Reward": [1.6908465079365151,0.0],
+    "MRR": [0.49173253968253905,0.0]},
+  "BM25 + Entity": {
+    "Sentence Recall@5": [0.67,0.0],
+    "Sentence Recall@10": [0.744,0.0]},
+    "Page Recall@5": [0.755,0.0],
+    "Page Recall@10": [0.824,0.0],
+    "Full Evidence@10": [0.684,0.0],
+    "Reward": [1.8396673015873084,0.0],
+    "MRR": [0.5408365079365078,0.0]}
+
+
+full validation:
+
+python eval_baseline.py \
+  --input-path /home/jovyan/project/outputs/valid_for_verl.jsonl \
+  --strategy all \
+  --save-details \
+  --details-path /home/jovyan/project/outputs/grpo_runs/tables/bm25_query_grpo_formal/baseline_entity_details.jsonl \
+  --max-examples 12000
+
+Evaluating BM25 + Claim: 100%|████████████████████████████████████████████████████████████| 10981/10981 [15:37:47<00:00,  5.12s/example]
+{
+  "reward_formula": "R = 0.5 * doc_hit@5 + 1.0 * sent_hit@5 + 1.0 * full_evidence@10 + 0.2 * mrr",
+  "num_shards": 26,
+  "input_path": "/home/jovyan/project/outputs/valid_for_verl.jsonl",
+  "BM25 + Claim": {
+    "Sentence Recall@5": [0.6160641107367271,0.0],
+    "Sentence Recall@10": [0.692742008924506,0.0],
+    "Page Recall@5": [0.7041253073490574,0.0],
+    "Page Recall@10": [0.7709680356980239,0.0],
+    "Full Evidence@10": [0.6385575084236408,0.0],
+    "Reward": [1.7030484473182363,0.0],
+"MRR": [0.48182087241598853,0.0]}}
+
+Evaluating BM25 + Entity: 100%|███████████████████████████████████████████████████████████| 10981/10981 [22:15:53<00:00,  7.30s/example]
+{
+  "reward_formula": "R = 0.5 * doc_hit@5 + 1.0 * sent_hit@5 + 1.0 * full_evidence@10 + 0.2 * mrr",
+  "num_shards": 26,
+  "input_path": "/home/jovyan/project/outputs/valid_for_verl.jsonl",
+  "BM25 + Entity": {
+    "Sentence Recall@5": [0.6658774246425644,0.0],
+    "Sentence Recall@10": [0.7344504143520627,0.0],
+    "Page Recall@5": [0.7617703305709862,0.0],
+    "Page Recall@10": [0.81522629997268,0.0],
+    "Full Evidence@10": [0.6758036608687733,0.0],
+    "Reward": [1.8290327448711674,0.0],
+    "MRR": [0.5323324703708974,0.0]}}
+
+#####################################################################################
+GRPO run:
+
+python train_grpo.py \
+  --model-path /home/jovyan/models/Qwen2.5-1.5B-Instruct \
+  --tokenizer-path /home/jovyan/models/Qwen2.5-1.5B-Instruct \
+  --rollout-gpu-memory-utilization 0.35 \
+  --rollout-log-every-n-steps 50 \
+  --smoke-train-examples 32 \
+  --smoke-valid-examples 10 \
+  --formal-valid-examples 1000 \
+  --formal-valid-seed 42
+
+full valid: 10981
+formal subset: 1000
+
+#####################################################################################
+dataset build:
+
+jovyan@jupyter-jp2022213635:~/project/src$ python build_dataset.py --train-ratio 0.9 --drop-nei
+{
+  "train_examples": 98829,
+  "valid_examples": 10981,
+  "train_path": "/home/jovyan/project/outputs/train_for_verl.jsonl",
+  "valid_path": "/home/jovyan/project/outputs/valid_for_verl.jsonl"
+}
+
+

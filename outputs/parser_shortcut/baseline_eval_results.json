@@ -1,0 +1,65 @@
+{
+  "reward_formula": "R = 0.5 * doc_hit@5 + 1.0 * sent_hit@5 + 1.0 * full_evidence@10 + 0.2 * mrr",
+  "num_shards": 26,
+  "input_path": "/home/jovyan/project/outputs/valid_formal_subset.parquet",
+  "BM25 + Claim": {
+    "Sentence Recall@5": [
+      0.611,
+      0.0
+    ],
+    "Sentence Recall@10": [
+      0.694,
+      0.0
+    ],
+    "Page Recall@5": [
+      0.697,
+      0.0
+    ],
+    "Page Recall@10": [
+      0.768,
+      0.0
+    ],
+    "Full Evidence@10": [
+      0.633,
+      0.0
+    ],
+    "Reward": [
+      1.6908465079365151,
+      0.0
+    ],
+    "MRR": [
+      0.49173253968253905,
+      0.0
+    ]
+  },
+  "BM25 + Entity": {
+    "Sentence Recall@5": [
+      0.67,
+      0.0
+    ],
+    "Sentence Recall@10": [
+      0.744,
+      0.0
+    ],
+    "Page Recall@5": [
+      0.755,
+      0.0
+    ],
+    "Page Recall@10": [
+      0.824,
+      0.0
+    ],
+    "Full Evidence@10": [
+      0.684,
+      0.0
+    ],
+    "Reward": [
+      1.8396673015873084,
+      0.0
+    ],
+    "MRR": [
+      0.5408365079365078,
+      0.0
+    ]
+  }
+}

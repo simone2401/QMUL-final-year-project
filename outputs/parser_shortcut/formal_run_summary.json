@@ -1,0 +1,10 @@
+{
+  "stage": "formal",
+  "max_steps": 2000,
+  "chunk_size": 10,
+  "best_step": 80,
+  "best_sentence_recall@10": 0.713,
+  "stop_reason": "Recall@10 \u8fde\u7eed 4 \u6b21\u9a8c\u8bc1\u672a\u63d0\u5347\u8d85\u8fc7 0.005",
+  "history_path": "/home/jovyan/project/outputs/grpo_runs/metrics/bm25_query_grpo_formal/formal_validation_history.json",
+  "best_checkpoint": "/home/jovyan/project/outputs/grpo_runs/checkpoints/bm25_query_grpo_formal/global_step_80"
+}
