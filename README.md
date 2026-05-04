@@ -1,6 +1,7 @@
 # QMUL-final-year-project
 
 Github links:https://github.com/simone2401/QMUL-final-year-project/tree/main
+
 This repository contains the code and experimental results for the undergraduate final-year project on query generation for automated fact-checking. The project explores reinforcement learning (GRPO) for improving retrieval-oriented query generation in automated fact-checking.
 
 
